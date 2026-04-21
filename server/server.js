@@ -14,12 +14,20 @@ const PORT = process.env.PORT || 5000;
 // ==========================================
 // 🛡️ PRODUCTION CORS CONFIGURATION
 // ==========================================
+
+// 1. Define all allowed origins here
+const allowedOrigins = [
+  'https://asktechsol.netlify.app', // Your production frontend
+  'http://localhost:3000',          // Localhost for React dev
+  'http://localhost:5173'           // Localhost for Vite dev (optional)
+];
+
 const corsOptions = {
-  // Allow requests from your specific frontend URL, fallback to localhost for dev
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', 
+  // 2. Pass the array to the origin property
+  origin: allowedOrigins, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Required if you are sending cookies or authorization headers
+  credentials: true, // Necessary if sending cookies or Auth headers
   optionsSuccessStatus: 200
 };
 
@@ -40,6 +48,7 @@ mongoose
     // Start Server
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`🔒 CORS is configured. Allowed origins: ${allowedOrigins.join(', ')}`);
     });
   })
   .catch((error) => {
