@@ -19,7 +19,8 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'https://asktechsol.netlify.app', // Your production frontend
   'http://localhost:3000',          // Localhost for React dev
-  'http://localhost:5173'           // Localhost for Vite dev (optional)
+  'http://localhost:5173' ,
+  'https://asktechnologies.in'// Localhost for Vite dev (optional)
 ];
 
 const corsOptions = {
